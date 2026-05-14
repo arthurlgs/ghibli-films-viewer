@@ -1,43 +1,35 @@
-import { Link } from 'react-router-dom'
-import { useFilms } from '../../hooks'
+import { Link } from "react-router-dom";
+import { useFilms } from "../../hooks";
+import { ErrorMessage } from "../../components/ErrorMessage";
+import { Loading } from "../../components/loading";
 
 export default function Home() {
-    const { data: films, isLoading, isError } = useFilms()
+  const { data: films, isLoading, isError } = useFilms();
 
-    if (isLoading) {
-        return (
-            <div>
-                <p>Loading films...</p>
-            </div>
-        )
-    }
-
-    if (isError) {
-        return (
-            <div>
-                <p>Error loading films. Please try again later.</p>
-            </div>
-        )
-    }
-
+  if (isLoading) return <Loading message="Loading films..." />;
+  if (isError)
     return (
-        <main>
-            <h1>Studio Ghibli Catalog</h1>
+      <ErrorMessage message="Error loading films. Please try again later" />
+    );
+
+  return (
+    <main>
+      <h1>Studio Ghibli Catalog</h1>
+
+      <div>
+        {films?.map((film) => (
+          <Link to={`/films/${film.id}`} key={film.id}>
+            <div>
+              <img src={film.movie_banner} alt={`Banner for ${film.title}`} />
+            </div>
 
             <div>
-                {films?.map((film) => (
-                    <Link to={`/films/${film.id}`} key={film.id}>
-                        <div>
-                            <img src={film.movie_banner} alt={`Banner for ${film.title}`} />
-                        </div>
-                        
-                        <div>
-                            <h2>{film.title}</h2>
-                            <p>Click to view details &rarr;</p>
-                        </div>
-                    </Link>
-                ))}
+              <h2>{film.title}</h2>
+              <p>Click to view details &rarr;</p>
             </div>
-        </main>
-    )
+          </Link>
+        ))}
+      </div>
+    </main>
+  );
 }
