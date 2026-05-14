@@ -21,7 +21,7 @@ export const useFilms = () => {
   return useQuery({
     queryKey: ["films"],
     queryFn: fetchFilms,
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5, // Information remains fresh for 5 minutes.
   });
 };
 

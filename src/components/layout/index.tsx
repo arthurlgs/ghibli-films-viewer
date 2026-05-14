@@ -10,6 +10,7 @@ export const Layout = () => {
 
         <main className="grow">
           <Outlet />
+          {/* Header/Footer remain always present through different pages. Outlet is where the different pages are loaded.*/}
         </main>
 
         <Footer />
