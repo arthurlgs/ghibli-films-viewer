@@ -11,7 +11,7 @@ export const AppRoutes = () => {
       <Suspense
         fallback={
           <div className="min-h-screen flex items-center justify-center text-xl font-bold text-gray-600">
-            Loading...
+            Loading page...
           </div>
         }
       >
