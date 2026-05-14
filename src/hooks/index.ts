@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query"
 import type { Film } from "../types"
 
+export const base_URL = 'https://ghibliapi.vercel.app'
+
 const fetchFilms = async (): Promise<Film[]> => {
-    const response = await fetch('https://ghibliapi.vercel.app/films')
+    const response = await fetch(`${base_URL}/films`)
 
 
     if(!response.ok) {
